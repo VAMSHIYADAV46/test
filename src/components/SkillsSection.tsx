@@ -1,4 +1,9 @@
+import { motion } from 'framer-motion';
+import { useScrollAnimation, fadeUpVariants, staggerContainer } from '@/hooks/useScrollAnimation';
+
 const SkillsSection = () => {
+  const { ref, isInView } = useScrollAnimation();
+  
   const skillCategories = [
     {
       title: 'Languages & Tools',
@@ -23,34 +28,42 @@ const SkillsSection = () => {
   ];
 
   return (
-    <section className="section-padding bg-card">
+    <section className="section-padding bg-card" ref={ref}>
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16 md:mb-24">
-          <h2 className="text-large mb-6">DEVELOPER DESIGNER CREATOR</h2>
-          <span className="text-foreground/50">/</span>
-          <h3 className="text-medium mt-8">Skills</h3>
-        </div>
+        <motion.div 
+          className="text-center mb-16 md:mb-24"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <motion.h2 className="text-large mb-6" variants={fadeUpVariants}>
+            DEVELOPER DESIGNER CREATOR
+          </motion.h2>
+          <motion.span className="text-foreground/50" variants={fadeUpVariants}>/</motion.span>
+          <motion.h3 className="text-medium mt-8" variants={fadeUpVariants}>Skills</motion.h3>
+        </motion.div>
 
         {/* Skills Categories */}
         <div className="space-y-16 md:space-y-24">
           {skillCategories.map((category, categoryIndex) => (
-            <div 
+            <motion.div 
               key={category.title}
-              className="animate-fade-up"
-              style={{ animationDelay: `${categoryIndex * 0.2}s` }}
+              variants={staggerContainer}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
             >
-              <h4 className="text-xl md:text-2xl font-medium mb-8 text-center">
+              <motion.h4 className="text-xl md:text-2xl font-medium mb-8 text-center" variants={fadeUpVariants}>
                 {category.title}
-              </h4>
+              </motion.h4>
               
               {/* Skills Grid */}
-              <div className="grid-skills">
+              <motion.div className="grid-skills" variants={staggerContainer}>
                 {category.skills.map((skill, skillIndex) => (
-                  <div
+                  <motion.div
                     key={skill}
                     className="group p-6 bg-background border border-border rounded-lg hover:border-foreground/30 transition-all duration-300 hover:scale-105"
-                    style={{ animationDelay: `${categoryIndex * 0.2 + skillIndex * 0.1}s` }}
+                    variants={fadeUpVariants}
                   >
                     <div className="flex items-center space-x-3">
                       <div className="w-2 h-2 bg-foreground rounded-full group-hover:scale-150 transition-transform"></div>
@@ -58,15 +71,20 @@ const SkillsSection = () => {
                         {skill}
                       </span>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
 
         {/* Developer Stats/Quote */}
-        <div className="mt-24 text-center">
+        <motion.div 
+          className="mt-24 text-center"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
           <div className="max-w-3xl mx-auto space-y-8">
             <div className="w-24 h-24 mx-auto bg-muted-foreground/10 rounded-full flex items-center justify-center">
               <svg className="w-12 h-12 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -78,7 +96,7 @@ const SkillsSection = () => {
               intuitive digital experiences."
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

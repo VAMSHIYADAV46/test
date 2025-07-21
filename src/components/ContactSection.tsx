@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { useScrollAnimation, fadeUpVariants, staggerContainer } from '@/hooks/useScrollAnimation';
 
 const ContactSection = () => {
+  const { ref, isInView } = useScrollAnimation();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
@@ -41,21 +44,26 @@ const ContactSection = () => {
   });
 
   return (
-    <section id="contact" className="section-padding bg-card">
+    <section id="contact" className="section-padding bg-card" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-24">
           {/* Left Content */}
-          <div className="space-y-8 animate-fade-up">
-            <div className="space-y-6">
+          <motion.div 
+            className="space-y-8"
+            variants={staggerContainer}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <motion.div className="space-y-6" variants={fadeUpVariants}>
               <h2 className="text-2xl md:text-4xl font-medium">
                 Let's Make It Happen
               </h2>
               <h3 className="text-xl md:text-2xl text-muted-foreground">
                 Say Hello
               </h3>
-            </div>
+            </motion.div>
 
-            <div className="space-y-6">
+            <motion.div className="space-y-6" variants={fadeUpVariants}>
               <p className="text-muted-foreground leading-relaxed">
                 Ready to bring your ideas to life? Whether you have a project in mind, 
                 need consultation, or just want to connect, I'd love to hear from you.
@@ -80,10 +88,10 @@ const ContactSection = () => {
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Social Links */}
-            <div className="space-y-4">
+            <motion.div className="space-y-4" variants={fadeUpVariants}>
               <p className="text-sm text-muted-foreground uppercase tracking-wide">Socials</p>
               <div className="flex space-x-6">
                 <a 
@@ -111,11 +119,15 @@ const ContactSection = () => {
                   Instagram
                 </a>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right Content - Contact Form */}
-          <div className="animate-fade-up" style={{ animationDelay: '0.2s' }}>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
                 <div>
@@ -162,7 +174,7 @@ const ContactSection = () => {
                 </svg>
               </Button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

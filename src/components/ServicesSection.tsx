@@ -1,4 +1,9 @@
+import { motion } from 'framer-motion';
+import { useScrollAnimation, fadeUpVariants, staggerContainer } from '@/hooks/useScrollAnimation';
+
 const ServicesSection = () => {
+  const { ref, isInView } = useScrollAnimation();
+  
   const services = [
     {
       number: '01',
@@ -21,29 +26,42 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="section-padding bg-card">
+    <section id="services" className="section-padding bg-card" ref={ref}>
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="mb-16 md:mb-24">
-          <div className="flex items-baseline space-x-4 mb-6">
+        <motion.div 
+          className="mb-16 md:mb-24"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <motion.div className="flex items-baseline space-x-4 mb-6" variants={fadeUpVariants}>
             <h2 className="text-large">What I Do</h2>
             <span className="text-foreground/50">/</span>
-          </div>
-          <p className="text-muted-foreground text-sm tracking-wide uppercase mb-8">(Services)</p>
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-4xl">
+          </motion.div>
+          <motion.p className="text-muted-foreground text-sm tracking-wide uppercase mb-8" variants={fadeUpVariants}>
+            (Services)
+          </motion.p>
+          <motion.p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-4xl" variants={fadeUpVariants}>
             I specialize in building full-stack web applications that are fast, reliable, and user-friendly. 
             With a solid foundation in both frontend and backend technologies, I help bring ideas to life 
             whether it's for a business, a startup, or a product team.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Services Grid */}
-        <div className="grid-services">
+        <motion.div 
+          className="grid-services"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {services.map((service, index) => (
-            <div 
+            <motion.div 
               key={service.number}
-              className="group space-y-6 animate-fade-up"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              className="group space-y-6"
+              variants={fadeUpVariants}
+              custom={index}
             >
               {/* Service Number */}
               <div className="flex items-center space-x-4">
@@ -71,9 +89,9 @@ const ServicesSection = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
