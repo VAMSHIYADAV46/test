@@ -44,7 +44,7 @@ const AboutSection = () => {
             <motion.div className="space-y-6 text-muted-foreground leading-relaxed" variants={fadeUpVariants}>
               <p>
                 I am a passionate Software Engineer with a knack for building full-stack web applications 
-                using modern technologies like Next.js and TailwindCSS. My journey into tech began with 
+                using modern technologies like React.js and TailwindCSS. My journey into tech began with 
                 a curiosity for solving real-world problems through innovative solutions, which evolved 
                 into a love for crafting user-centric digital experiences.
               </p>

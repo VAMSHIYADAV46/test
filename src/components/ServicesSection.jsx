@@ -9,7 +9,7 @@ const ServicesSection = () => {
       number: '01',
       title: 'Full-Stack Development',
       description: 'From frontend interactions to backend APIs, I build complete web solutions. I work with modern stacks to deliver apps that are scalable, maintainable, and ready for real-world users.',
-      skills: ['React, Node.js, Express.js', 'REST APIs, Firebase, Docker', 'Git, GitHub, Postman']
+      skills: ['React.js, Node.js, Express.js', 'REST APIs, Passport.js, MongoDB', 'Git, GitHub, Postman']
     },
     {
       number: '02',
@@ -21,7 +21,7 @@ const ServicesSection = () => {
       number: '03',
       title: 'Optimization',
       description: 'Beyond handling data, I\'m driven by the challenge of turning complex raw inputs into reliable, usable systems. I enjoy designing pipelines that power insights and apply core CS principles to build for scale, speed, and stability.',
-      skills: ['Data Structures & Algorithms', 'DBMS, OOP, OS Fundamentals', 'Data Pipelines, ETL, and Scalability']
+      skills: ['Data Structures & Algorithms', 'DBMS, OOP, OS Fundamentals', 'Code Maintainability, Version Control, and Deployment']
     }
   ];
 

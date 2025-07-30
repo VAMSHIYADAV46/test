@@ -2,7 +2,6 @@ import {
   Code2,
   Database,
   Cpu,
-  Coffee,
   FileText,
   Braces,
   GitBranch,
@@ -18,21 +17,26 @@ import {
   Code,
   Figma,
   Github,
+  Mail,
+  Image,
+  Package2,
+  Cloud
 } from "lucide-react"
 
 export default function SkillsSection() {
-  const skills = [
-    { name: "Python", icon: Code2 },
-    { name: "SQL", icon: Database },
-    { name: "C++", icon: Cpu },
-    { name: "Java", icon: Coffee },
-    { name: "TypeScript", icon: FileText },
-    { name: "JavaScript", icon: Braces },
-    { name: "Git", icon: GitBranch },
-    { name: "Postman", icon: Send },
-    { name: "Docker", icon: Container },
-    { name: "Firebase", icon: Flame },
-  ]
+const skills = [
+  { name: "HTML", icon: FileText },
+  { name: "CSS", icon: Palette },
+  { name: "JavaScript ", icon: Braces },
+  { name: "SQL", icon: Database },
+  { name: "Git", icon: Code2 },
+  { name: "Postman", icon: Send },
+  { name: "Render", icon: Container },
+  { name: "Vite", icon: Zap },
+  { name: "Passport.js", icon: Flame },
+  { name: "Netlify", icon: Cloud },
+]
+
 
   return (
     <div id="skills" className="min-h-screen bg-background px-4 py-16 md:px-6 lg:px-8">
@@ -82,14 +86,8 @@ export default function SkillsSection() {
                 <div className="rounded-full bg-foreground/5 p-2 transition-all duration-300 group-hover:bg-foreground/10">
                   <Globe className="h-4 w-4 text-foreground/70 transition-all duration-300 group-hover:text-foreground" />
                 </div>
-                <span className="text-sm text-foreground/80 transition-all duration-300 group-hover:text-foreground">React</span>
-              </div>
-              <div className="group flex items-center justify-center gap-3 rounded-xl bg-card/50 px-4 py-3 transition-all duration-300 hover:bg-card/80">
-                <div className="rounded-full bg-foreground/5 p-2 transition-all duration-300 group-hover:bg-foreground/10">
-                  <Zap className="h-4 w-4 text-foreground/70 transition-all duration-300 group-hover:text-foreground" />
-                </div>
                 <span className="text-sm text-foreground/80 transition-all duration-300 group-hover:text-foreground">
-                  Next.js
+                  React.js
                 </span>
               </div>
               <div className="group flex items-center justify-center gap-3 rounded-xl bg-card/50 px-4 py-3 transition-all duration-300 hover:bg-card/80">
@@ -97,7 +95,15 @@ export default function SkillsSection() {
                   <Palette className="h-4 w-4 text-foreground/70 transition-all duration-300 group-hover:text-foreground" />
                 </div>
                 <span className="text-sm text-foreground/80 transition-all duration-300 group-hover:text-foreground">
-                  TailwindCSS
+                  Tailwind CSS
+                </span>
+              </div>
+              <div className="group flex items-center justify-center gap-3 rounded-xl bg-card/50 px-4 py-3 transition-all duration-300 hover:bg-card/80">
+                <div className="rounded-full bg-foreground/5 p-2 transition-all duration-300 group-hover:bg-foreground/10">
+                  <Layers className="h-4 w-4 text-foreground/70 transition-all duration-300 group-hover:text-foreground" />
+                </div>
+                <span className="text-sm text-foreground/80 transition-all duration-300 group-hover:text-foreground">
+                  Material UI
                 </span>
               </div>
             </div>
@@ -148,13 +154,17 @@ export default function SkillsSection() {
                 <div className="rounded-full bg-foreground/5 p-2 transition-all duration-300 group-hover:bg-foreground/10">
                   <Figma className="h-4 w-4 text-foreground/70 transition-all duration-300 group-hover:text-foreground" />
                 </div>
-                <span className="text-sm text-foreground/80 transition-all duration-300 group-hover:text-foreground">Figma</span>
+                <span className="text-sm text-foreground/80 transition-all duration-300 group-hover:text-foreground">
+                  Figma
+                </span>
               </div>
               <div className="group flex items-center justify-center gap-3 rounded-xl bg-card/50 px-4 py-3 transition-all duration-300 hover:bg-card/80">
                 <div className="rounded-full bg-foreground/5 p-2 transition-all duration-300 group-hover:bg-foreground/10">
                   <Github className="h-4 w-4 text-foreground/70 transition-all duration-300 group-hover:text-foreground" />
                 </div>
-                <span className="text-sm text-foreground/80 transition-all duration-300 group-hover:text-foreground">GitHub</span>
+                <span className="text-sm text-foreground/80 transition-all duration-300 group-hover:text-foreground">
+                  GitHub
+                </span>
               </div>
             </div>
           </div>
