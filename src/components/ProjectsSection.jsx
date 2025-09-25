@@ -7,6 +7,7 @@ const ProjectsSection = () => {
   const [currentProject, setCurrentProject] = useState(0);
   const autoScrollRef = useRef(null);
   const interactionTimeoutRef = useRef(null);
+  const hasStartedAutoScroll = useRef(false);
 
   const projects = [
     {
@@ -65,16 +66,42 @@ const ProjectsSection = () => {
   };
 
   const startAutoScroll = () => {
+    if (autoScrollRef.current) {
+      clearInterval(autoScrollRef.current);
+    }
     autoScrollRef.current = setInterval(() => {
       setCurrentProject(prev => (prev + 1) % totalProjects);
     }, 5000);
   };
 
+  // Start auto-scroll only when section comes into view
   useEffect(() => {
-    startAutoScroll();
+    if (isInView && !hasStartedAutoScroll.current) {
+      hasStartedAutoScroll.current = true;
+      startAutoScroll();
+    } else if (!isInView && hasStartedAutoScroll.current) {
+      // Pause auto-scroll when section goes out of view
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current);
+      }
+      if (interactionTimeoutRef.current) {
+        clearTimeout(interactionTimeoutRef.current);
+      }
+    } else if (isInView && hasStartedAutoScroll.current) {
+      // Resume auto-scroll when section comes back into view
+      startAutoScroll();
+    }
+  }, [isInView]);
+
+  // Cleanup on unmount
+  useEffect(() => {
     return () => {
-      clearInterval(autoScrollRef.current);
-      clearTimeout(interactionTimeoutRef.current);
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current);
+      }
+      if (interactionTimeoutRef.current) {
+        clearTimeout(interactionTimeoutRef.current);
+      }
     };
   }, []);
 
